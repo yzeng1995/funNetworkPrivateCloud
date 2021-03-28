@@ -4,6 +4,10 @@ Copyright@Yan Zeng, 旋律果子
 
 E-mail: zengyan16@mails.ucas.edu.cn
 
+QQ Group: 1084369522
+
+Telegram Group: https://t.me/melodyNetworkTech
+
 武汉凌讯网络科技有限公司
 
 # 【好玩的网络-私有云篇】第01期
