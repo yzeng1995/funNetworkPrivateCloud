@@ -10,6 +10,11 @@ Telegram Group: https://t.me/melodyNetworkTech
 
 武汉凌讯网络科技有限公司
 
+Bilibili(旋律果子): https://space.bilibili.com/626863
+
+Youtube(旋律果子)：https://www.youtube.com/channel/UC7yQPFk1rCiaZDmXXqLwMhw
+
+
 # 【好玩的网络-私有云篇】第01期
 # 【好玩的网络-私有云篇】第02期
 具体的教程请看视频教程，本文档仅仅只做一些补充以及一些命令的讲解。
