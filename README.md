@@ -71,6 +71,8 @@ reboot # 重启系统
 ssh root@192.168.4.106
 ```
 
+基于CentOS 8的适用于64位树莓派的服务器镜像:https://raspberrypi.club/366.html
+
 ## 设置SSH开机启动
 ``` bash
 systemctl enable sshd
