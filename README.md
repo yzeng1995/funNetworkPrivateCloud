@@ -45,8 +45,11 @@ dd if=./CentOS-8.3.2011-x86_64-dvd1.iso of=/dev/sdb bs=4M
 ## Windows
 ``` bash
 # 随便找一个U盘烧录工具烧录即可。(自己找吧，我帮不了忙，纯净版的太难找了)
-# 可以用rufus
+# @Potter 提供思路，可以用rufus
 # https://rufus.ie
+
+# @本直播间黑粉头子 提供思路，可以使用ventoy
+# https://www.ventoy.net/cn/index.html
 
 ```
 
