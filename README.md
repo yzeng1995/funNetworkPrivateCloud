@@ -16,6 +16,22 @@ Youtube(旋律果子)：https://www.youtube.com/channel/UC7yQPFk1rCiaZDmXXqLwMhw
 
 
 # 【好玩的网络-私有云篇】第01期
+本系列视频的目的是教你搭建一个简单易用的NAS和软路由一体机，并且科普相关的原理。
+
+视频介绍请访问下面的链接【私有云01】
+
+Youtube:https://youtu.be/Ishw17sEQtc
+
+Bilibili:https://www.bilibili.com/video/BV1Gp4y1W7RG
+
+功能实现(非虚拟化/非黑群/非Openwrt/使用完全开源免费的企业级系统搭建NAS和软路由的所有应用！)：
+
+NAS的基本功能：文件/影音资源共享/备份/远程下载 等等···
+
+软路由的基本功能：包含几乎消费级路由器所有功能/科学/远程隧道/动态路由协议 等等···
+
+如何来管理：可以使用Siri语音助手管理，Iphone快捷键，命令行，web监视器 等等···
+
 # 【好玩的网络-私有云篇】第02期
 具体的教程请看视频教程，本文档仅仅只做一些补充以及一些命令的讲解。
 
@@ -161,12 +177,75 @@ chmod 777 -R /media/disk # 修改权限，任何人都可以读，写硬盘
 ```
 
 
+# 【好玩的网络-私有云篇】第04期
+
+## 登录服务器
+
+``` bash
+ssh root@192.168.4.20 # 登录服务器
+```
+
+## 安装samba
+``` bash
+yum -y install samba samba-common samba-common-tools samba-common-libs samba-test
+```
+
+## 配置samba
+
+``` bash
+# 配置文件位置 /etc/samba/smb.conf
+# 写入配置文件
+cat > /etc/samba/smb.conf << EOF
+# See smb.conf.example for a more detailed config file or
+# read the smb.conf manpage.
+# Run 'testparm' to verify the config is correct after
+# you modified it.
+
+[global]
+	# 网络权限
+    hosts allow = 127.0.0.1 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8
+	# 匿名访问支持
+    map to guest = Bad User
+[smb-public]
+	# 匿名访问权限 yes
+    guest ok = yes 
+	# 要分享的目录
+    path = /media/public
+	# 读写权限(可读可写)
+    read only = no
+EOF
 
 
+systemctl start smb # 启动smb服务
+systemctl enable smb # 设置smb开机启动
 
+vim /etc/samba/smb.conf # 编辑smb配置文件
+# 测试smb配置文件是否有语法错误
+testparm
+systemctl restart smb # 重新启动smb服务
+```
 
+# windows系统访问 smb
 
+``` bash
+# 步骤1. 打开“文件资源管理器”
+# 步骤2. 点击左上角“计算机”
+# 步骤3. 点击“映射网络驱动器”
+# 步骤4. 在文件夹中输入 “\\192.168.4.20\smb-public”
+# 步骤5. 点击完成
+# 步骤6. 在“计算机”中就可以看到smb分享的文件夹了
 
+```
+
+# 开机挂载磁盘
+
+``` bash
+# UUID=36b3df0c-9ff3-471c-919a-6e7301ab5736 /media/disk                   xfs    defaults,noatime        0 0
+
+fdisk -l
+blkid /dev/sda1
+vim /etc/fstab
+```
 
 
 
