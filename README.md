@@ -204,6 +204,7 @@ cat > /etc/samba/smb.conf << EOF
 [global]
 	# 网络权限
     hosts allow = 127.0.0.1 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8
+    #hosts allow = 0.0.0.0/0 #全局网络
 	# 匿名访问支持
     map to guest = Bad User
 [smb-public]
@@ -213,6 +214,8 @@ cat > /etc/samba/smb.conf << EOF
     path = /media/public
 	# 读写权限(可读可写)
     read only = no
+    display charset = UTF-8
+    unix charset = UTF-8
 EOF
 
 
@@ -223,6 +226,15 @@ vim /etc/samba/smb.conf # 编辑smb配置文件
 # 测试smb配置文件是否有语法错误
 testparm
 systemctl restart smb # 重新启动smb服务
+```
+##samba 端口开放137,138,139,445 iptable
+
+```
+iptables -A INPUT -p tcp -m multiport --dports 139,445 -j ACCEPT
+iptables -A INPUT -p udp -m multiport --dports 137,138 -j ACCEPT
+ 
+iptables -A OUTPUT -p tcp -m multiport --sports 139,445 -j ACCEPT
+iptables -A OUTPUT -p tcp -m multiport --sports 137,138 -j ACCEPT
 ```
 
 # windows系统访问 smb
